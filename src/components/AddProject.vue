@@ -1,8 +1,10 @@
 <template>
-        <div class="float-right fixed" style="width: 400px; position:fixed;top: 40%; right:0px;">
+        <div style="width: 400px; position:fixed;top: 40%; right:15px;">
             <form @submit.prevent="addProject">
-                <input type="text" name="name" v-model="name" placeholder="Add Project..." autocomplete="off" require>
-                <input type="text" name="description" v-model="description" placeholder="Add Description Here" autocomplete="off" require>
+                <lable  class="text-center" style="width: 400px;">Add New Project</lable>
+                <input type="text" name="name" v-model="name" placeholder="Project Name..." autocomplete="off" require>
+                <textarea type="text" name="description" rows="4" v-model="description" placeholder="Project Description Here" autocomplete="off" require>
+                </textarea>
                 <input type="submit" value="Submit" class="btn">
             </form>
         </div>
@@ -44,10 +46,14 @@ export default {
   form {
     display: flex;
     flex-direction: column;
-    padding: 10px
   }
 
   input[type="text"] {
+    padding: 5px;
+    width: 100%;
+    margin: 5px;
+  }
+  textarea {
     padding: 5px;
     width: 100%;
     margin: 5px;
