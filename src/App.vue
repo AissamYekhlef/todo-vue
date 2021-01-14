@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Projects v-bind:projects="projects" v-on:del-project="deleteProject" v-on:set-todos="setTodos"/> 
+    <h2 class="mx-auto text-center" style="width: 400px;"> {{ projectName }} </h2>
     <AddTodo v-on:add-todo="addTodo"/>
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
     <AddProject v-on:add-project="addProject"/> 
@@ -21,13 +22,14 @@ export default {
   components: {
     Header,
     Projects,
-    Todos,
     AddTodo,
+    Todos,
     AddProject,
   },
   data() {
     return {
       cuerrentProject:1,
+      projectName: "",
       todos: [],  
       projects: [
         {
@@ -80,16 +82,26 @@ export default {
   methods: {
     deleteTodo(id) {
       // deleteTodoLocal
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      const project = this.projects.filter(project => project.id == this.cuerrentProject)[0];
+      project.todos = project.todos.filter(todo => todo.id !== id);
+      this.todos = project.todos;
     },
     addTodo(newTodo) {
       // addTodoLocal
-      const project = this.projects.filter(project => project.id == this.cuerrentProject)[0];
-      project.todos.push(newTodo);
+      if(newTodo.title === '' ){
+        return 0;
+      }else{
+        const project = this.projects.filter(project => project.id == this.cuerrentProject)[0];
+        project.todos.push(newTodo);
+      }
     },
     addProject(newProject) {
       // addProjectLocal
-      this.projects = [...this.projects, newProject];
+      if(newProject.name === '' || newProject.description === ''){
+        return 0;
+      }else{
+        this.projects = [...this.projects, newProject];
+      }
     },
     deleteProject(id) {
       // addProjectLocal
@@ -99,6 +111,8 @@ export default {
       this.cuerrentProject = id;
       const project = this.projects.filter(project => project.id == id)[0];
       this.todos = project.todos;
+      this.projectName = project.name;
+
       // console.log(project.todos);
     }
   }

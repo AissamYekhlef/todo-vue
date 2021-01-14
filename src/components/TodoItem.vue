@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-item" v-bind:class="{'is-complete': todo.completed}">
+    <div class="todo-item mx-auto" style="width: 400px;" v-bind:class="{'is-complete': todo.completed}">
         <p>  
             <span v-if="todo.completed">
                 <input type="checkbox" v-on:change="markComplete" checked>

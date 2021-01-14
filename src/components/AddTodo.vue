@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  class="todo-item mx-auto" style="width: 400px;">
         <form @submit.prevent="addTodo">
             <input type="text" name="title" v-model="title" placeholder="Add Todo..." autocomplete="off">
             <input type="submit" value="Submit" class="btn">

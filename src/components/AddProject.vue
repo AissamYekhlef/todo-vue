@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <form @submit.prevent="addProject">
-            <input type="text" name="name" v-model="name" placeholder="Add Project..." autocomplete="off">
-            <input type="text" name="description" v-model="description" placeholder="Add Description Here" autocomplete="off">
-            <input type="submit" value="Submit" class="btn">
-        </form>
-    </div>
+        <div class="float-right fixed" style="width: 400px; position:fixed;top: 40%; right:0px;">
+            <form @submit.prevent="addProject">
+                <input type="text" name="name" v-model="name" placeholder="Add Project..." autocomplete="off" require>
+                <input type="text" name="description" v-model="description" placeholder="Add Description Here" autocomplete="off" require>
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div>
 </template>
 
 <script>
@@ -43,14 +43,18 @@ export default {
 <style scoped>
   form {
     display: flex;
+    flex-direction: column;
+    padding: 10px
   }
 
   input[type="text"] {
-    flex: 10;
     padding: 5px;
+    width: 100%;
+    margin: 5px;
   }
 
   input[type="submit"] {
-    flex: 2;
+    width: 100%;
+    margin: 5px;
   }
 </style>
