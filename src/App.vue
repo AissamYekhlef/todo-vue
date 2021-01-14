@@ -1,46 +1,34 @@
 <template>
   <div id="app">
-    <Header v-bind:projects="projects" v-on:del-project="deleteProject" />
+    <Header />
+    <Projects v-bind:projects="projects" v-on:del-project="deleteProject" v-on:set-todos="setTodos"/> 
     <AddTodo v-on:add-todo="addTodo"/>
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
-    <!-- <AddProject v-on:add-project="addProject"/> -->
+    <AddProject v-on:add-project="addProject"/> 
   </div>
 </template>
 
 <script>
 
 import Header from './components/layout/Header';
+import Projects from './components/Projects';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
-// import AddProject from './components/AddProject';
+import AddProject from './components/AddProject';
 
 export default {
   name: 'App',
   components: {
     Header,
+    Projects,
     Todos,
     AddTodo,
-    // AddProject,
+    AddProject,
   },
   data() {
     return {
-      todos: [
-          {
-            id: 1,
-            title: 'Todo One',
-            completed: true,
-          },
-          {
-            id: 2,
-            title: 'Todo Two',
-            completed: false,
-          },
-          {
-            id: 3,
-            title: 'Todo Three',
-            completed: true,
-          },
-      ],
+      cuerrentProject:1,
+      todos: [],  
       projects: [
         {
           id: 1,
@@ -69,17 +57,17 @@ export default {
           description: "desc 2",
           todos: [
             {
-              id: 1,
+              id: 2,
               title: 'Project 2 Todo One',
               completed: true,
             },
             {
-              id: 2,
+              id: 3,
               title: 'Project 2 Todo Two',
               completed: true,
             },
             {
-              id: 3,
+              id: 4,
               title: 'Project 2 Todo Three',
               completed: false,
             },
@@ -96,8 +84,8 @@ export default {
     },
     addTodo(newTodo) {
       // addTodoLocal
-      // this.projects[projectId].todos = [...this.projects[projectId].todos, newTodo];
-      this.todos = [...this.todos, newTodo];
+      const project = this.projects.filter(project => project.id == this.cuerrentProject)[0];
+      project.todos.push(newTodo);
     },
     addProject(newProject) {
       // addProjectLocal
@@ -106,6 +94,12 @@ export default {
     deleteProject(id) {
       // addProjectLocal
       this.projects = this.projects.filter(project => project.id !== id);
+    },
+    setTodos(id) {
+      this.cuerrentProject = id;
+      const project = this.projects.filter(project => project.id == id)[0];
+      this.todos = project.todos;
+      // console.log(project.todos);
     }
   }
 }

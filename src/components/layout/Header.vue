@@ -1,20 +1,14 @@
 <template>
     <header class="header">
         <h1> TodoList </h1>
-        <Projects v-bind:projects="projects"/> 
     </header>
 </template>
 
 <script>
 
-import Projects from '../Projects.vue';
 
 export default { 
     name: "Header",
-    props: ["projects"],
-    components: {
-        Projects,
-    }
 }
 
 </script>
