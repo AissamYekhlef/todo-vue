@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-bind:key="todo.id" v-for="todo in todos" class="tab-content tabs">
-            <TodoItem v-bind:todo="todo" v-on:del-todo="$emit('del-todo', todo.id)"/>
+        <div :key="todo.id" v-for="todo in todos" class="tab-content tabs">
+            <TodoItem :todo="todo" @completed="markTodoAsComplete(todo.id, $event)"  @del-todo="deleteTodo(todo.id)"/>
         </div>
     </div>
 </template>
@@ -15,7 +15,17 @@ export default {
         TodoItem
     },
     // TODO avoid declaring props using string syntax, instead use the object syntax https://vuejs.org/v2/api/#props
+    // Fixed
     props: ["todos"],
+    methods: {
+        markTodoAsComplete(todoId, completed) {
+            console.log('Todos template');
+            this.$emit('completed', {todoId, completed});
+        },
+        deleteTodo(todoId) {
+          this.$emit('del-todo', todoId);
+        }
+    }
 }
 
 </script>

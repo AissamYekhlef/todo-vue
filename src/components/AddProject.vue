@@ -1,7 +1,7 @@
 <template>
         <div style="width: 400px; position:fixed;top: 40%; right:15px;">
             <form @submit.prevent="addProject">
-                <lable  class="text-center" style="width: 400px;">Add New Project</lable>
+                <div  class="text-center" style="width: 400px;">Add New Project</div>
                 <input type="text" name="name" v-model="name" placeholder="Project Name..." autocomplete="off" require>
                 <textarea type="text" name="description" rows="4" v-model="description" placeholder="Project Description Here" autocomplete="off" require>
                 </textarea>
@@ -23,8 +23,7 @@ export default {
         }
     },
     methods: {
-        addProject(e) {
-            e.preventDefault();
+        addProject() {
             const UUID = require('uuid-int');
             const newProject = {
                 id: UUID(10).uuid(),
