@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Header />
-    <Projects v-bind:projects="projects" v-on:del-project="deleteProject" v-on:set-todos="setTodos"/> 
+    <!-- TODO instead of using v-bind:prop="propValue" you can use shorthand like :prop="propValue" https://vuejs.org/v2/guide/syntax.html#v-bind-Shorthand -->
+    <!-- TODO instead of using v-on:action="actionHandler" you can use shorthand like @action="actionHandler" https://vuejs.org/v2/guide/syntax.html#v-on-Shorthand -->
+    <Projects v-bind:projects="projects" v-on:del-project="deleteProject" v-on:set-todos="setTodos"/>
+    <!-- TODO instead of hard coding the style attribute (e.g. style="width: 400px;") you can use "Style Binding" https://vuejs.org/v2/guide/class-and-style.html#Binding-Inline-Styles --> 
     <h2 class="mx-auto text-center" style="width: 400px;"> {{ projectName }} </h2>
     <AddTodo v-on:add-todo="addTodo"/>
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
@@ -82,6 +85,7 @@ export default {
   methods: {
     deleteTodo(id) {
       // deleteTodoLocal
+      // TODO instead of using Array.prototype.filter to find one element you can use Array.prototype.find https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
       const project = this.projects.filter(project => project.id == this.cuerrentProject)[0];
       project.todos = project.todos.filter(todo => todo.id !== id);
       this.todos = project.todos;
@@ -97,6 +101,7 @@ export default {
     },
     addProject(newProject) {
       // addProjectLocal
+      // TODO always trim the white spaces before comparing empty strings https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
       if(newProject.name === '' || newProject.description === ''){
         return 0;
       }else{
@@ -109,7 +114,10 @@ export default {
     },
     setTodos(id) {
       this.cuerrentProject = id;
-      const project = this.projects.filter(project => project.id == id)[0];
+      const project = this.projects.filter(project => {
+        // TODO always use strict comparison '===' instead of equality https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality
+        return project.id == id
+      })[0];
       this.todos = project.todos;
       this.projectName = project.name;
 

@@ -21,6 +21,31 @@ export default {
     props: ["todo"],
     methods: {
         markComplete() {
+          /* TODO avoid mutating the passed props directly, instead try to $emit an event with the new value.
+            For example:
+              ** TodoItem.vue **
+                ....
+                markComplete() {
+                  this.$emit('completed', !this.todo.completed)
+                }
+                ...
+            ---------------------
+              ** Todos.vue **
+                ....
+                 <TodoItem v-bind:todo="todo" v-on:completed="markTodoAsComplete(todo.id, $event)"  v-on:del-todo="$emit('del-todo', todo.id)"/>
+                ...
+                markTodoAsComplete(todoId, completed) {
+                  this.$emit('completed', {todoId, completed})
+                }
+            ---------------------
+              ** Todos.vue **
+                ....
+                 <Todos v-bind:todos="todos" v-on:completed="markTodoAsComplete($event) v-on:del-todo="deleteTodo" />
+                ...
+                markTodoAsComplete({todoId, completed}) {
+                  // find the todo by "todoId" and set the completed property to "completed"
+                }
+          */
             this.todo.completed = !this.todo.completed;
         }
     }

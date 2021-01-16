@@ -20,6 +20,7 @@ export default {
     },
     methods: {
         addTodo(e) {
+            // TODO no need to e.preventDefault();, you already did it on @submit.prevent="addTodo"
             e.preventDefault();
             const UUID = require('uuid-int');
             const newTodo = {
