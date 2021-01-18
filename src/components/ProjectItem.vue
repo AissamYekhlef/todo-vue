@@ -8,7 +8,9 @@
 
 export default { 
     name: "ProjectItem",
-    props: ["project"],
+    props: {
+        project: Object
+    },
     methods: {
         setTodos(projectId){
             this.$emit('set-todos', projectId);

@@ -94,15 +94,19 @@ export default {
       // TODO instead of using Array.prototype.filter to find one element you can use Array.prototype.find https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
       // Fixed
       const project = this.projects.find(project => project.id === this.cuerrentProject);
-      project.todos = project.todos.filter(todo => todo.id !== id);
-      this.todos = project.todos;
+
+      if(project){ 
+        project.todos = project.todos.filter(todo => todo.id !== id);
+        this.todos = project.todos;
+      }
+
     },
     addTodo(newTodo) {
       // addTodoLocal
       if(newTodo.title.trim() === '' ){
         return 0;
       }else{
-        const project = this.projects.filter(project => project.id === this.cuerrentProject)[0];
+        const project = this.projects.find(project => project.id === this.cuerrentProject);
         project.todos.push(newTodo);
       }
     },
