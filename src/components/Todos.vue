@@ -14,8 +14,6 @@ export default {
     components: {
         TodoItem
     },
-    // TODO avoid declaring props using string syntax, instead use the object syntax https://vuejs.org/v2/api/#props
-    // Fixed
     props: ["todos"],
     methods: {
         markTodoAsComplete(todoId, completed) {

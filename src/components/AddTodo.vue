@@ -9,8 +9,6 @@
 
 <script>
 
-// import { v1 as uuid4 }from 'uuid';
-
 export default { 
     name: "AddTodo",
     data() {
@@ -20,8 +18,6 @@ export default {
     },
     methods: {
         addTodo() {
-            // TODO no need to e.preventDefault();, you already did it on @submit.prevent="addTodo"
-            // Fixed 
             const UUID = require('uuid-int');
             const newTodo = {
                 id: UUID(10).uuid(),
@@ -30,7 +26,6 @@ export default {
                 projectId: 1, 
 
             };
-            // send up to parent
             this.$emit('add-todo', newTodo);
             this.title = '';
         }

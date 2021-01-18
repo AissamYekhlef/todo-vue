@@ -18,9 +18,6 @@ export default {
     },
     methods: {
         markComplete() {
-          /* TODO avoid mutating the passed props directly, instead try to $emit an event with the new value.
-            Fixed
-          */
           this.$emit('completed', !this.todo.completed);
         },
         deleteTodo(todoId) {

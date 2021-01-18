@@ -1,13 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <!-- TODO instead of using v-bind:prop="propValue" you can use shorthand like :prop="propValue" https://vuejs.org/v2/guide/syntax.html#v-bind-Shorthand -->
-    <!-- Fixed -->
-    <!-- TODO instead of using v-on:action="actionHandler" you can use shorthand like @action="actionHandler" https://vuejs.org/v2/guide/syntax.html#v-on-Shorthand -->
-    <!-- Fixed -->
     <Projects :projects="projects" @del-project="deleteProject" @set-todos="setTodos"/>
-    <!-- TODO instead of hard coding the style attribute (e.g. style="width: 400px;") you can use "Style Binding" https://vuejs.org/v2/guide/class-and-style.html#Binding-Inline-Styles --> 
-    <!-- Fixed -->
     <h2 class="mx-auto text-center" :style="styleObject"> {{ projectName }} </h2>
     <AddTodo @add-todo="addTodo"/>
     <Todos :todos="todos" @completed="markTodoAsComplete($event)" @del-todo="deleteTodo" />
@@ -84,15 +78,11 @@ export default {
             },
           ]   
         },
-      
       ]
     }
   },
   methods: {
     deleteTodo(id) {
-      // deleteTodoLocal
-      // TODO instead of using Array.prototype.filter to find one element you can use Array.prototype.find https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-      // Fixed
       const project = this.projects.find(project => project.id === this.cuerrentProject);
 
       if(project){ 
@@ -101,8 +91,8 @@ export default {
       }
 
     },
+
     addTodo(newTodo) {
-      // addTodoLocal
       if(newTodo.title.trim() === '' ){
         return 0;
       }else{
@@ -110,34 +100,29 @@ export default {
         project.todos.push(newTodo);
       }
     },
+    
     addProject(newProject) {
-      // addProjectLocal
-      // TODO always trim the white spaces before comparing empty strings https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
-      // Fixed
       if(newProject.name.trim() === '' || newProject.description.trim() === ''){
         return 0;
       }else{
         this.projects = [...this.projects, newProject];
       }
     },
+
     deleteProject(id) {
-      // addProjectLocal
       this.projects = this.projects.filter(project => project.id !== id);
     },
+
     setTodos(projectId) {
       this.cuerrentProject = projectId;
       const project = this.projects.find(project => {
-        // TODO always use strict comparison '===' instead of equality https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality
-        // Fixed
         return project.id === projectId;
       });
       this.todos = project.todos;
       this.projectName = project.name;
-
-      // console.log(project.todos);
     },
+
     markTodoAsComplete({todoId, completed}) {
-      console.log('todo');
       const todo = this.todos.find(todo => todo.id === todoId);
       todo.completed = completed;
     },
