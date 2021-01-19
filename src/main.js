@@ -2,10 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import App from './App.vue'
+import Projects from './components/Projects'
+
 Vue.config.productionTip = false
 
 const routes = [
   { path: '/', component: App },
+  { path: '/projects', component: Projects },
 ];
 
 const router = new VueRouter({
