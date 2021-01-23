@@ -4,7 +4,7 @@
   <div class="col">
     <div class="card mb-4 text-center" :style="[widthStyle, hightStyle]">
       <div class="card-body">
-        <h5 class="card-title">{{ project.name }}</h5>
+        <h5 class="card-title font-weight-bold">{{ project.name }}</h5>
         <p class="card-text" :style="textStyle">{{ project.description }}</p>
         <router-link :to="{ name: 'ProjectDetails', params: { project_id: project.id } }" class="btn btn-primary">
           Todo List

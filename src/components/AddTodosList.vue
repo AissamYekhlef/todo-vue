@@ -1,6 +1,6 @@
 <template>
         <div >
-            <form @submit.prevent="AddTodosList" :style="formStyle">
+            <form @submit.prevent="addTodosList" :style="formStyle">
                 <div  class="text-center">Add New List of Todos</div>
                 <input type="text" name="name" v-model="name" placeholder="List Name..." autocomplete="off" require>
                 <textarea type="text" name="description" rows="4" v-model="description" placeholder="List Description Here" autocomplete="off" require>

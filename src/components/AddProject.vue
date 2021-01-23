@@ -33,7 +33,7 @@ export default {
                 id: UUID(10).uuid(),
                 name: this.name,
                 description: this.description, 
-                todos: [], 
+                todosList: [], 
             };
             // send up to parent
             this.$emit('add-project', newProject);

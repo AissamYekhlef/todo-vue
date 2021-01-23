@@ -2,7 +2,7 @@
     <div>
         <div class="d-flex flex-row flex-wrap bd-highlight m-auto">
 
-            <AddProject />
+            <AddProject @add-project="addProject"/>
 
             <div :key="project.id" v-for="project in projects"  class="" id="navbarNav">
                 <ProjectItem :project="project" @set-todos="setTodos(project.id)"/>
@@ -33,6 +33,9 @@ export default {
     methods: {
         setTodos(projectId){
             this.$emit('set-todos', projectId);
+        },
+        addProject(newProject){
+            this.$emit('add-project', newProject);
         },
     },
 }

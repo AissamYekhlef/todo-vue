@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex flex-row flex-wrap bd-highlight">
-            <AddTodosList />
+            <AddTodosList @add-todos-list="addList"/>
 
             <div :key="tl.id" v-for="tl in todosList">
                 <div class="col">
@@ -10,7 +10,7 @@
                             <h5 class="card-title font-weight-bold">{{ tl.name }}</h5>
                             <p class="card-text" :style="textStyle">{{ tl.description }}</p>
                             <p class="card-text text-muted">{{ tl.todos.length }} Todos</p>
-                            <router-link :to="{path: `/projects/${$route.params.project_id}/todos/2`}" class="btn btn-success">Go Todos</router-link>
+                            <router-link :to="{path: `/projects/${$route.params.project_id}/todos/${tl.id}`}" class="btn btn-success">Go Todos</router-link>
                         </div>
                     </div>
                 </div>
@@ -45,6 +45,9 @@ export default {
         },
         deleteTodo(todoId) {
           this.$emit('del-todo', todoId);
+        },
+        addList(list, projectId) {
+          this.$emit('add-todos-list', {list, projectId});
         }
     }
 }

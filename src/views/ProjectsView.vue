@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <h1> Projects View </h1>
-    <AddProject @add-project="addProject"/> 
-    <Projects :projects="projects" @del-project="deleteProject" @set-todos="setTodos"/>
+    <Projects :projects="projects" @del-project="deleteProject" @add-list="addList" @add-project="addProject"/>
   </div>
 </template>
 
@@ -15,7 +14,25 @@ export default {
   name: 'Home',
   components: {
     Projects,
-    // AddProject,
+  },
+  methods: {
+    addProject(newProject){
+        if(newProject.name.trim() === '' || newProject.description.trim() === ''){
+        return 0;
+      }else{
+        this.projects = [...this.projects, newProject];
+      }
+    },  
+    addList(list, projectId){
+        const project = this.projects.find(project => {
+            return project.id === projectId;
+        });
+        if(project){
+            project.todosList = [...project.todosList, list];
+        }else{
+            return 0;
+        }
+    },  
   },
   data() {
     return {

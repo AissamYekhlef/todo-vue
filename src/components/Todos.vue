@@ -11,7 +11,7 @@
             <h4>Todo NAME: {{ $route.params.todo_id }}</h4>
         </div>
         <div>
-            <AddTodo />
+            <AddTodo @add-todo="addTodo"/>
             <div :key="todo.id" v-for="todo in todos" class="tab-content tabs">
                 <TodoItem :todo="todo" @completed="markTodoAsComplete(todo.id, $event)"  @del-todo="deleteTodo(todo.id)"/>
             </div>
@@ -30,7 +30,12 @@ export default {
         AddTodo
     },
     props: {
-        todos: Array,
+        // todos: Array,
+    },
+    data(){
+        return {
+            todos: [],
+        }
     },
     methods: {
         markTodoAsComplete(todoId, completed) {
@@ -39,6 +44,11 @@ export default {
         },
         deleteTodo(todoId) {
           this.$emit('del-todo', todoId);
+
+        },
+        addTodo(newTodo) {
+            // this.$emit('add-todo', newTodo);
+            this.todos = [...this.todos, newTodo];
         }
     },
     mounted(){

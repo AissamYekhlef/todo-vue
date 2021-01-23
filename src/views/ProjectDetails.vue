@@ -8,7 +8,7 @@
             <p>Total TodosList : {{ project.todosList.length }} TodosList </p>
         </div>
          <div class="d-flex flex-row">
-            <TodosList :todosList="todosList" />
+            <TodosList :todosList="todosList" @add-todos-list="addList"/>
          </div>
     </div>
 </template>
@@ -20,6 +20,21 @@ export default {
     name: "ProjectDetails",
     props: {
         
+    },
+    components: {
+        TodosList
+    },
+    methods: {
+        addList({list, projectId}){
+            console.log(list);
+            this.project.todosList = [...this.project.todosList, list];
+            this.todosList = this.project.todosList;
+            console.log('project ID : '+projectId);
+        }
+    },
+    mounted(){
+        // this.$route.params.id;
+        this.todosList = this.project.todosList;
     },
     data(){
         return {
@@ -108,7 +123,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 4,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -134,7 +149,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 5,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -160,7 +175,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 6,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -186,7 +201,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 7,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -212,7 +227,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 8,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -238,7 +253,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 9,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -264,7 +279,7 @@ export default {
                             },
                         ]  
                     },{
-                        id: 3,
+                        id: 10,
                         name : "Todos Name 3",
                         description : "Todos Description 3",
                         todos: [
@@ -293,16 +308,6 @@ export default {
                 ] 
                 }
             }
-    },
-    components: {
-        TodosList
-    },
-    methods: {
-        
-    },
-    mounted(){
-        // this.$route.params.id;
-        this.todosList = this.project.todosList;
     }
 }
 
