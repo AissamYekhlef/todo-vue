@@ -30,7 +30,7 @@ export default {
         AddTodo
     },
     props: {
-        // todos: Array,
+
     },
     data(){
         return {
@@ -49,31 +49,20 @@ export default {
         addTodo(newTodo) {
             // this.$emit('add-todo', newTodo);
             this.todos = [...this.todos, newTodo];
+        },
+        setTodos(){
+            let project_id = parseInt(this.$route.params.project_id);
+            let todo_id = parseInt(this.$route.params.todo_id);
+
+            let list_projects = []; 
+            list_projects = JSON.parse(localStorage.projects);
+            let project = list_projects.find(project => { return project.id === project_id });
+            let list_todos = project.todosList.find(todo => { return todo.id === todo_id });
+            this.todos = list_todos.todos;
         }
     },
     mounted(){
-        this.todos = [
-            {
-                id: 1,
-                title: 'Todo One',
-                completed: true,
-            },
-            {
-                id: 2,
-                title: 'Todo Two',
-                completed: true,
-            },
-            {
-                id: 3,
-                title: 'Todo Three',
-                completed: false,
-            },
-            {
-                id: 4,
-                title: 'Todo four',
-                completed: true,
-            },
-        ]
+        this.setTodos();
     }
 }
 

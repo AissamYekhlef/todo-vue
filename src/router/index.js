@@ -5,6 +5,7 @@ import Profile from '../views/Profile.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import ProjectDetails from '../views/ProjectDetails.vue'
 import Todos from '../components/Todos.vue'
+import NotFound from '@/components/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -31,9 +32,9 @@ const routes = [
     props:true,
   }, 
   {
-        path: '/projects/:project_id/todos/:todo_id',
-        name: 'Todos',
-        component: Todos,
+    path: '/projects/:project_id/todos/:todo_id',
+    name: 'Todos',
+    component: Todos,
   },
   {
     path: '/about',
@@ -42,7 +43,12 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  }, 
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound,
+  },
 ]
 
 const router = new VueRouter({
