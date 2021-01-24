@@ -81,6 +81,9 @@ export default {
       ]
     }
   },
+  mounted(){
+    this.setTodos(1);
+  },
   methods: {
     deleteTodo(id) {
       const project = this.projects.find(project => project.id === this.cuerrentProject);
