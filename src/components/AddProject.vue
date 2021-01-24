@@ -3,7 +3,7 @@
             <form @submit.prevent="addProject" :style="formStyle">
                 <div  class="text-center">Add New Project</div>
                 <input type="text" name="name" v-model="name" placeholder="Project Name..." autocomplete="off" require>
-                <textarea type="text" name="description" rows="4" v-model="description" placeholder="Project Description Here" autocomplete="off" require>
+                <textarea type="text" name="description" rows="4" v-model="description" @keyup.enter="addProject" placeholder="Project Description Here" autocomplete="off" require>
                 </textarea>
                 <input type="submit" value="Add Project" class="btn btn-primary">
             </form>
@@ -28,17 +28,19 @@ export default {
     },
     methods: {
         addProject() {
-            const UUID = require('uuid-int');
-            const newProject = {
-                id: UUID(10).uuid(),
-                name: this.name,
-                description: this.description, 
-                todosList: [], 
-            };
-            // send up to parent
-            this.$emit('add-project', newProject);
-            this.name = '';
-            this.description = '';
+            if(this.name.trim() !== '' || this.description.trim() !== ''){
+              const UUID = require('uuid-int');
+              const newProject = {
+                  id: UUID(10).uuid(),
+                  name: this.name,
+                  description: this.description, 
+                  todosList: [], 
+              };
+              // send up to parent
+              this.$emit('add-project', newProject);
+              this.name = '';
+              this.description = '';
+            }
         }
     },
 }

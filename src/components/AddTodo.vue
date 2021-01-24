@@ -23,7 +23,6 @@ export default {
                 id: UUID(10).uuid(),
                 title: this.title,
                 completed: false,
-                projectId: 1, 
 
             };
             this.$emit('add-todo', newTodo);

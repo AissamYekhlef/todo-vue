@@ -25,29 +25,39 @@ export default {
         TodosList
     },
     methods: {
-        addList({list, projectId}){
+        addList(list){
             console.log(list);
             this.project.todosList = [...this.project.todosList, list];
+            let list_projects = [];
+            list_projects = JSON.parse(localStorage.projects);
+            list_projects = list_projects.filter(project => { return project.id !== this.cuerrentProject });
+            list_projects.push(this.project);
+            console.log(list_projects);
+            localStorage.setItem( "projects", JSON.stringify(list_projects));
+
+
             this.todosList = this.project.todosList;
-            console.log('project ID : '+projectId);
+            console.log('project ID : ' + this.cuerrentProject);
         },
         setProject(){
             let id = parseInt(this.$route.params.project_id);
             let list_project = [];
             list_project = JSON.parse(localStorage.projects);
             this.project = list_project.find(project => { return project.id === id });
+            this.cuerrentProject = this.project.id;
         }
     },
     data(){
         return {
+            cuerrentProject: 1,
             todosList : [],
             project: {}
         }
     },
     mounted(){
         this.setProject();
-        console.log(this.project.todosList.length);
-        console.log(this.$route);
+        // console.log(this.project.todosList.length);
+        // console.log(this.$route);
     },
 }
 

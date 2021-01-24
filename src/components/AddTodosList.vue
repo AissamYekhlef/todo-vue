@@ -3,7 +3,7 @@
             <form @submit.prevent="addTodosList" :style="formStyle">
                 <div  class="text-center">Add New List of Todos</div>
                 <input type="text" name="name" v-model="name" placeholder="List Name..." autocomplete="off" require>
-                <textarea type="text" name="description" rows="4" v-model="description" placeholder="List Description Here" autocomplete="off" require>
+                <textarea type="text" name="description" rows="4" v-model="description" @keyup.enter="addTodosList" placeholder="List Description Here" autocomplete="off" require>
                 </textarea>
                 <input type="submit" value="Add" class="btn btn-success">
             </form>
@@ -29,6 +29,9 @@ export default {
     },
     methods: {
         addTodosList() {
+          if(this.name.trim() === '' || this.description.trim() === ''){
+            return 0;
+          }else {  
             const UUID = require('uuid-int');
             const newList = {
                 id: UUID(10).uuid(),
@@ -40,6 +43,7 @@ export default {
             this.$emit('add-todos-list', newList);
             this.name = '';
             this.description = '';
+          }    
         }
     },
 }

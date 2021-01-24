@@ -17,10 +17,14 @@ export default {
   },
   methods: {
     addProject(newProject){
-        if(newProject.name.trim() === '' || newProject.description.trim() === ''){
+      if(newProject.name.trim() === '' || newProject.description.trim() === ''){
         return 0;
       }else{
         this.projects = [...this.projects, newProject];
+        let list_projects = [];
+        list_projects = JSON.parse(localStorage.projects);
+        list_projects.push(newProject);
+        localStorage.setItem( "projects", JSON.stringify(list_projects));
       }
     },  
     addList(list, projectId){

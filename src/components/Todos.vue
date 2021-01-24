@@ -48,7 +48,26 @@ export default {
         },
         addTodo(newTodo) {
             // this.$emit('add-todo', newTodo);
+            let project_id = parseInt(this.$route.params.project_id);
+            let todo_id = parseInt(this.$route.params.todo_id);
             this.todos = [...this.todos, newTodo];
+
+            let list_projects = [];
+            list_projects = JSON.parse(localStorage.projects);
+
+            let project = list_projects.find(project => { return project.id === project_id });
+            list_projects = list_projects.filter(project => { return project.id !== project_id });
+            
+            let has_new = project.todosList.find(todo => { return todo.id === todo_id });
+            let list_todos = project.todosList.filter(todo => { return todo.id !== todo_id });
+
+            has_new.todos.push(newTodo);
+            list_todos.push(has_new);
+            project.todosList = list_todos;
+            list_projects.push(project);
+
+            // console.log(list_todos);
+            localStorage.setItem( "projects", JSON.stringify(list_projects));
         },
         setTodos(){
             let project_id = parseInt(this.$route.params.project_id);
