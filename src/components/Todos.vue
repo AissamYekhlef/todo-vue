@@ -1,15 +1,13 @@
 <template>
     <div>
         <div>
-            <h4>Project ID: {{ $route.params.project_id }}</h4>
-            <h4>Project NAME:
+            <h4>Project Name:
             <router-link :to="{ name:'ProjectDetails', params:{project_id: $route.params.project_id} }">
                 project name 1
             </router-link>
             </h4>
-            <!-- <h2>Project NAME: {{ project.name }}</h2> -->
-            <h4>Todo ID: {{ $route.params.todo_id }}</h4>
-            <h4>Todo NAME: {{ $route.params.todo_id }}</h4>
+            <h4>Todo Name: <span class="font-weight-bold"> {{ listName }} </span> </h4>
+            <p>Todo Description: {{ listDescription }} </p>
         </div>
         <div>
             <AddTodo @add-todo="addTodo"/>
@@ -36,6 +34,8 @@ export default {
     data(){
         return {
             todos: [],
+            listName : '',
+            listDescription: '',
         }
     },
     methods: {
@@ -78,6 +78,8 @@ export default {
             list_projects = JSON.parse(localStorage.projects);
             let project = list_projects.find(project => { return project.id === project_id });
             let list_todos = project.todosList.find(todo => { return todo.id === todo_id });
+            this.listName = list_todos.name;
+            this.listDescription = list_todos.description;
             this.todos = list_todos.todos;
         }
     },
