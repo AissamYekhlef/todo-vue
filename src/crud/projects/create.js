@@ -1,58 +1,58 @@
 let projects = [
         {    
           id: 1,
-          name: "project 1",
-          description: "desc 1",
+          name: "DiData",
+          description: "project has the tasks of DiData.",
           todosList: [
               {
                   id: 1,
-                  name : "Todos Name 1",
-                  description : "Todos Description 1",
+                  name : "Frontend",
+                  description : "frontend tasks & todos",
                   todos: [
                       {
                           id: 1,
-                          title: 'project 1 list 1 todo One',
+                          title: 'html',
                           completed: true,
                       },
                       {
                           id: 2,
-                          title: 'project 1 list 1 todo Two',
+                          title: 'css',
                           completed: true,
                       },
                       {
                           id: 3,
-                          title: 'Todo Three',
+                          title: 'JavaScript',
                           completed: false,
                       },
                       {
                           id: 4,
-                          title: 'Todo four',
+                          title: 'VueJS',
                           completed: true,
                       },
                   ]  
               },{
                   id: 2,
-                  name : "Todos Name 2",
-                  description : "Todos Description 2",
+                  name : "Backend",
+                  description : "backend tasks & todos",
                   todos: [
                       {
                           id: 1,
-                          title: 'project 1 list 2 todo One',
+                          title: 'php',
                           completed: true,
                       },
                       {
                           id: 2,
-                          title: 'Todo Two',
+                          title: 'Laravel',
                           completed: true,
                       },
                       {
                           id: 3,
-                          title: 'Todo Three',
+                          title: 'API',
                           completed: false,
                       },
                       {
                           id: 4,
-                          title: 'Todo four',
+                          title: 'Unittest',
                           completed: true,
                       },
                   ]  
@@ -164,22 +164,22 @@ let projects = [
           ] 
           },{
           id: 2,
-          name: "projects 2",
-          description: "desc 222",
+          name: "University",
+          description: "project has the Todos of my study.",
           todosList: [
             {
                   id: 1,
-                  name : "Todos Name 1",
-                  description : "Todos Description 1",
+                  name : "Network Administation",
+                  description : "network tasks",
                   todos: [
                       {
                           id: 1,
-                          title: 'project 2 list 1 todo 1',
+                          title: 'TP 01',
                           completed: true,
                       },
                       {
                           id: 2,
-                          title: 'Todo Two',
+                          title: 'Chapter 01',
                           completed: true,
                       },
                       {
@@ -195,22 +195,22 @@ let projects = [
                   ]  
               },{
                   id: 2,
-                  name : "Todos Name 2",
-                  description : "Todos Description 2",
+                  name : "Web Services",
+                  description : "Web Services tasks",
                   todos: [
                       {
                           id: 1,
-                          title: 'project 2 list 2 todo 1',
-                          completed: true,
+                          title: 'Coure 01',
+                          completed: false,
                       },
                       {
                           id: 2,
-                          title: 'Todo Two',
+                          title: 'Cour 02',
                           completed: true,
                       },
                       {
                           id: 3,
-                          title: 'Todo Three',
+                          title: 'TP 01',
                           completed: false,
                       },
                       {
@@ -221,13 +221,13 @@ let projects = [
                   ]  
               },{
                   id: 3,
-                  name : "Todos Name 3",
-                  description : "Todos Description 3",
+                  name : "DATABASE",
+                  description : "database tasks and TPs",
                   todos: [
                       {
                           id: 1,
-                          title: 'project 2 list 3 todo 1',
-                          completed: true,
+                          title: 'TP 01',
+                          completed: false,
                       },
                       {
                           id: 2,
