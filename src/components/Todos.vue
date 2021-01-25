@@ -1,5 +1,6 @@
 <template>
     <div>
+        <TodosListNavbar @change-todos="changeTodosList"/>
         <div>
             <h4>Project Name:
             <router-link :to="{ name:'ProjectDetails', params:{project_id: $route.params.project_id} }">
@@ -21,12 +22,14 @@
 <script>
 import TodoItem from './TodoItem.vue';
 import AddTodo from './AddTodo.vue';
+import TodosListNavbar from './TodosListNavbar.vue';
 
 export default { 
     name: "Todos",
     components: {
         TodoItem,
-        AddTodo
+        AddTodo,
+        TodosListNavbar
     },
     props: {
 
@@ -81,6 +84,9 @@ export default {
             this.listName = list_todos.name;
             this.listDescription = list_todos.description;
             this.todos = list_todos.todos;
+        },
+        changeTodosList(){
+            this.setTodos();
         }
     },
     mounted(){
