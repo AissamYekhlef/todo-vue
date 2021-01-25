@@ -17,17 +17,21 @@ export default {
         }
     },
     methods: {
-        addTodo() {
-            const UUID = require('uuid-int');
-            const newTodo = {
-                id: UUID(10).uuid(),
-                title: this.title,
-                completed: false,
+			addTodo() {
+					if(this.title.trim() !== '' ){
+						const UUID = require('uuid-int');
+						const newTodo = {
+								id: UUID(10).uuid(),
+								title: this.title,
+								completed: false,
 
-            };
-            this.$emit('add-todo', newTodo);
-            this.title = '';
-        }
+						};
+						this.$emit('add-todo', newTodo);
+						this.title = '';
+					}else {
+						alert('Title is Required !');
+					}
+			}
     },
 }
 

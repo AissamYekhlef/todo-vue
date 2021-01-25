@@ -30,7 +30,7 @@ export default {
     methods: {
         addTodosList() {
           if(this.name.trim() === '' || this.description.trim() === ''){
-            return 0;
+            alert('Name & Description of List are Required !');
           }else {  
             const UUID = require('uuid-int');
             const newList = {

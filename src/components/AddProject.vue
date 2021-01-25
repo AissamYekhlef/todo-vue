@@ -40,6 +40,8 @@ export default {
               this.$emit('add-project', newProject);
               this.name = '';
               this.description = '';
+            }else {
+              alert('Name & Description are Required !');
             }
         }
     },
