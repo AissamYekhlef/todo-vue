@@ -2,10 +2,11 @@
     <div>
         <div>
             <h4>Project ID: {{ $route.params.project_id }}</h4>
-            <span>Project NAME:</span>
+            <h4>Project NAME:
             <router-link :to="{ name:'ProjectDetails', params:{project_id: $route.params.project_id} }">
                 project name 1
             </router-link>
+            </h4>
             <!-- <h2>Project NAME: {{ project.name }}</h2> -->
             <h4>Todo ID: {{ $route.params.todo_id }}</h4>
             <h4>Todo NAME: {{ $route.params.todo_id }}</h4>
