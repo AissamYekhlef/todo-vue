@@ -1,10 +1,13 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
 import './main.css'
 import './crud/projects/operations'
 
 import 'bootstrap/dist/css/bootstrap.css';
+
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
