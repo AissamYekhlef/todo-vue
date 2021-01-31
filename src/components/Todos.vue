@@ -4,7 +4,7 @@
         <div>
             <h4>Project Name:
             <router-link :to="{ name:'ProjectDetails', params:{project_id: $route.params.project_id} }">
-                project name 1
+                {{ projectName }}
             </router-link>
             </h4>
             <h4>Todo Name: <span class="font-weight-bold"> {{ listName }} </span> </h4>
@@ -37,6 +37,7 @@ export default {
     data(){
         return {
             todos: [],
+            projectName: '',
             listName : '',
             listDescription: '',
         }
@@ -82,6 +83,7 @@ export default {
             let project = list_projects.find(project => { return project.id === project_id });
             let list_todos = project.todosList.find(todo => { return todo.id === todo_id });
             this.listName = list_todos.name;
+            this.projectName = project.name;
             this.listDescription = list_todos.description;
             this.todos = list_todos.todos;
         },

@@ -38,7 +38,6 @@ export default {
     },
     mounted(){
         this.getTodosList();
-        console.log(this.$router);
     },
     methods: {
         getTodosList(){
@@ -47,7 +46,6 @@ export default {
             list_projects = JSON.parse(localStorage.projects);
             let project = list_projects.find(project => { return project.id === id });
             this.list = project.todosList;
-            console.log(this.list);
         },
     }
 

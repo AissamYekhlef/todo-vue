@@ -1,10 +1,30 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> | 
-      <router-link to="/about">About</router-link> | 
+      <nav class="d-flex justify-content-between">
+        <div  class="p-2 flex-grow-1 bd-highlight">
+          <router-link to="/">Home</router-link> | 
+          <router-link to="/about">About</router-link> 
 
-      <router-link :to="{ name: 'Projects'}" :class="{ 'router-link-exact-active' : navShow()  }">Projects</router-link>
+          <router-link v-if="loggedIn" 
+            :to="{ name: 'Projects'}" 
+            :class="{ 'router-link-exact-active' : navShow()  }">
+            | Projects
+          </router-link>
+        </div>
+
+      <div class="ml-auto">
+        <button class="btn btn-outline-danger" @click="logoutUser" v-if="loggedIn"> Logout </button>
+        <router-link  v-if="! loggedIn" to="/login"> 
+            <button class="btn btn-outline-success">Login</button> 
+        </router-link> 
+        <router-link to="/register" v-if="! loggedIn"> 
+            <button class="btn btn-outline-success ml-1">Register</button> 
+        </router-link> 
+      </div>
+      </nav>
+      
+
       <nav aria-label="breadcrumb" v-if="navShow()">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><router-link :to="{ name: 'Projects'}">Projects</router-link></li>
@@ -27,21 +47,28 @@
           </li>
         </ol>
       </nav>
+     
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
+
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   mounted(){
-    console.log(this.$route.params.id);
-    console.log(this.path);
+    // console.log(this.$route.params.id);
   },
   data(){
     return {
       path : window.location.pathname,
+      isLoggedIn: this.loggedIN
     }
+  },
+  computed: {
+    ...mapGetters("auth", ["loggedIn"])
   },
   methods :{
     navShow() {
@@ -51,7 +78,13 @@ export default {
       } else {
         return false;
       }
-    }
+    },
+    logoutUser(){
+      this.logout().then(() => {
+        this.$router.push({ path: "/login" });
+      });
+    },
+    ...mapActions("auth", ["logout"])
   }
 }
 

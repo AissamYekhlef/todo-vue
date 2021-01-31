@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="d-flex flex-row flex-wrap bd-highlight m-auto">
+        <div class="d-flex flex-row flex-wrap bd-highlight mx-4">
 
             <AddProject @add-project="addProject"/>
 

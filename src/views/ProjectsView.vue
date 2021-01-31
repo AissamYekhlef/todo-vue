@@ -23,7 +23,7 @@ export default {
         this.projects = [...this.projects, newProject];
         let list_projects = [];
         list_projects = JSON.parse(localStorage.projects);
-        list_projects.push(newProject);
+        list_projects = [newProject, ...list_projects];
         localStorage.setItem( "projects", JSON.stringify(list_projects));
       }
     },  
