@@ -5,7 +5,11 @@
             <AddProject @add-project="addProject"/>
 
             <div :key="project.id" v-for="project in projects"  class="" id="navbarNav">
-                <ProjectItem :project="project" @set-todos="setTodos(project.id)"/>
+                <ProjectItem :project="project" 
+                    @set-todos="setTodos(project.id)" 
+                    @del-project="deleteProject(project.id)"
+                    @update-project="updateProject(project)"
+                />
             </div>
         </div>
     </div>
@@ -36,6 +40,12 @@ export default {
         },
         addProject(newProject){
             this.$emit('add-project', newProject);
+        },
+        deleteProject(projectId){
+            this.$emit('del-project', projectId);
+        },
+        updateProject(project){
+            this.$emit('update-project', project);
         },
     },
 }

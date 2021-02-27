@@ -22,19 +22,16 @@ export default {
             description: '',
             formStyle: {
                 width: '200px',
-                height:'225px',
+                // height:'290px',
             }
         }
     },
     methods: {
         addProject() {
             if(this.name.trim() !== '' || this.description.trim() !== ''){
-              const UUID = require('uuid-int');
               const newProject = {
-                  id: UUID(10).uuid(),
                   name: this.name,
                   description: this.description, 
-                  todosList: [], 
               };
               // send up to parent
               this.$emit('add-project', newProject);

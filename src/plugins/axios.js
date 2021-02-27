@@ -11,7 +11,7 @@ let config = {
   baseURL:
     process.env.NODE_ENV === "production"
       ? "https://shrieking-dracula-89098.herokuapp.com"
-      : "http://127.0.0.1:5000",
+      : "http://127.0.0.1:8000/api",
   timeout: 60 * 1000, // Timeout
   withCredentials: true // Check cross-site Access-Control
 };

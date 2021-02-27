@@ -8,18 +8,25 @@
             <!-- <p>Total TodosList : {{ project.todosList.length }} TodosList </p> -->
         </div>
          <div class="d-flex flex-row">
-            <TodosList :todosList="project.todosList" @add-todos-list="addList"/>
+            <TodosList :todosList="todosList" @add-todos-list="addList"/>
          </div>
     </div>
 </template>
 
 <script>
 import TodosList from '../components/TodosList.vue'
+import axios from "../plugins/axios";
+import { mapGetters } from 'vuex';
 
 export default { 
     name: "ProjectDetails",
     props: {
         
+    },
+    computed: {
+        ...mapGetters({
+            user: 'auth/getUser'
+        })
     },
     components: {
         TodosList
@@ -42,6 +49,22 @@ export default {
             list_project = JSON.parse(localStorage.projects);
             this.project = list_project.find(project => { return project.id === id });
             this.cuerrentProject = this.project.id;
+        },
+        getProjectById(){
+            let id = parseInt(this.$route.params.project_id);
+            // let list_project = [];
+
+            axios.get('/projects/' + id, {
+            headers:{
+                'Authorization': 'Bearer ' + this.user.access_token
+            }
+            })
+            .then(({ data }) => {
+                console.log('Getting Project Details from API');
+                this.project = data.project;
+                this.todosList = data.project.lists;
+                // return data.project;
+      });
         }
     },
     data(){
@@ -52,7 +75,8 @@ export default {
         }
     },
     mounted(){
-        this.setProject();
+        // this.setProject();
+        this.getProjectById();
     },
 }
 

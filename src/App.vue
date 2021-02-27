@@ -14,6 +14,7 @@
         </div>
 
       <div class="ml-auto">
+        User:<span class="pr-3 text-success font-weight-bold" v-if="loggedIn"> {{ this.user.user }} </span>
         <button class="btn btn-outline-danger" @click="logoutUser" v-if="loggedIn"> Logout </button>
         <router-link  v-if="! loggedIn" to="/login"> 
             <button class="btn btn-outline-success">Login</button> 
@@ -68,9 +69,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("auth", ["loggedIn"])
+    ...mapGetters("auth", ["loggedIn"]),
+    ...mapGetters({
+      user: 'auth/getUser'
+    })
   },
   methods :{
+
     navShow() {
       let path = window.location.pathname;
       if(path.startsWith('/projects')){

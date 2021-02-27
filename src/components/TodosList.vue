@@ -7,12 +7,12 @@
                     <div class="col">
                         <div class="card mb-4" :style="cardStyle">
                             <div class="card-body">
-                                <h5 class="card-title font-weight-bold">{{ tl.name }}</h5>
+                                <h5 class="card-title font-weight-bold"  :style="titleStyle">{{ tl.name }}</h5>
                                 <p class="card-text" :style="textStyle">{{ tl.description }}</p>
-                                <p class="card-text text-muted">{{ tl.todos.length }} Todos</p>
+                                 <p class="card-text text-muted"><!--{{  tl.todos.length  }}--> Todos</p> 
                                 <router-link :to="{path: `/projects/${$route.params.project_id}/todos/${tl.id}`}" class="btn btn-success">
-                                    <span v-if="tl.todos.length > 0"> Go Todos </span>  
-                                    <span v-else> Create Todos </span>  
+                                    <!-- <span v-if="tl.todos.length > 0"> Go Todos </span>   -->Go Todos 
+                                    <!-- <span v-else> Create Todos </span>   -->
                                 </router-link>
                             </div>
                         </div>
@@ -37,6 +37,11 @@ export default {
         return {
             textStyle: {
                 height: '3em',
+                overflow: 'hidden',
+            },
+            titleStyle: {
+                height: '3em',
+                lineHeight: '1.5em',
                 overflow: 'hidden',
             },
             cardStyle: {
