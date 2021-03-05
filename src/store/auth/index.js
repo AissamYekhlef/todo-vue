@@ -51,7 +51,16 @@ const actions = {
   },
 
   logout: ({ commit }) => {
-    commit(AUTH_LOGOUT);
+      return axios
+      .post("auth/logout", {
+        headers:{
+          'Authorization': 'Bearer ' + state.user.access_token
+      }  
+      })
+      .then(({ data }) => {
+        commit(AUTH_LOGOUT);
+        console.log(data);
+      });
   }
 };
 

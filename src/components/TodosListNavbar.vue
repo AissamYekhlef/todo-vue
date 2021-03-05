@@ -4,13 +4,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul v-for="l in list" :key="l.id" class="navbar-nav mr-auto">
                 <li class="nav-item" :class="[{active: isActive(l.id)}]">
-                    <router-link class="nav-link" :to="{
-                        name: 'Todos',
-                        params : {
-                            project_id : $route.params.project_id,
-                            todo_id : l.id,
-                        }
-                    }" > {{ l.name }} </router-link>
+                    <router-link class="nav-link" 
+                        :to="{
+                            name: 'Todos',
+                            params : {
+                                project_id : $route.params.project_id,
+                                todo_id : l.id
+                            }
+                        }" 
+                    > 
+                        {{ l.name }} 
+                    </router-link>
                 </li>
             </ul>  
         </div>
@@ -20,9 +24,11 @@
 <script>
 export default {
 
+    props: {
+        list : Array,
+    },
     data(){
         return {
-            list: [],
             currentListId : function(){
                 return parseInt(this.$route.params.todo_id);
             },
@@ -37,16 +43,10 @@ export default {
         }
     },
     mounted(){
-        this.getTodosList();
+        console.log(this.list)
     },
     methods: {
-        getTodosList(){
-            let id = parseInt(this.$route.params.project_id);
-            let list_projects = [];
-            list_projects = JSON.parse(localStorage.projects);
-            let project = list_projects.find(project => { return project.id === id });
-            this.list = project.todosList;
-        },
+
     }
 
 }

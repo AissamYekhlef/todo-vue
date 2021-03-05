@@ -9,7 +9,7 @@
                   <div class="form-group">
                     <label class="label">Username OR Email</label>
                     <div class="input-group">
-                      <input v-model="form.email" type="text" class="form-control" placeholder="Username OR Email">
+                      <input v-model="form.email" type="text" name="email" class="form-control" placeholder="Username OR Email" autocomplete>
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -29,7 +29,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <button @click="loginUser" class="btn btn-primary submit-btn btn-block">Login</button>
+                    <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
                   </div>
                   <div class="form-group d-flex justify-content-between">
                     <div class="form-check form-check-flat mt-0">
@@ -78,8 +78,11 @@ export default {
   },
   methods: {
     loginUser() {
-      console.log(this.form);
-      this.login(this.form)
+      if(this.form.email.trim() === '' || this.form.password.trim() === ''){
+        alert('Email & Password Are Required !');
+      }else{
+        //console.log(this.form);
+        this.login(this.form)
         .then(() => {
           // this.form = Object.assign({}, loginForm);
           this.$router.push({ name: "Projects" });
@@ -92,6 +95,8 @@ export default {
             this.error = "Nework Error.";
           }
         });
+      }
+      
     },
     ...mapActions("auth", ["login"])
   }

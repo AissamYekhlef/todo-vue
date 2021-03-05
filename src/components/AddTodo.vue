@@ -19,9 +19,7 @@ export default {
     methods: {
 			addTodo() {
 					if(this.title.trim() !== '' ){
-						const UUID = require('uuid-int');
 						const newTodo = {
-								id: UUID(10).uuid(),
 								title: this.title,
 								completed: false,
 

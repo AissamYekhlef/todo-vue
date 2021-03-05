@@ -2,10 +2,10 @@
   <div class="home">
     <h1> Projects View </h1>
     <Projects :projects="projects" 
-        @del-project="deleteProject" 
-        @add-list="addList" 
-        @add-project="addProject"
-        @update-project="updateProject"
+              @del-project="deleteProject" 
+              @add-list="addList" 
+              @add-project="addProject"
+              @update-project="updateProject"
     />
   </div>
 </template>

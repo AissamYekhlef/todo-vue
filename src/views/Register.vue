@@ -77,22 +77,27 @@ export default {
   }),
   methods: {
     registerUser() {
-      this.loading = true;
-      this.register(this.form)
-        .then(() => {
-          this.loading = false;
-          this.form = Object.assign({}, registerForm);
-          this.$router.push({ name: "Projects" });
-        })
-        .catch(err => {
-          this.loading = false;
+      if(this.form.name.trim() === '' || this.form.email.trim() === '' || this.form.password.trim() === ''){
+        alert('Name, Email & Password Are Required !');
+      }else {
+        this.loading = true;
+        this.register(this.form)
+          .then(() => {
+            this.loading = false;
+            this.form = Object.assign({}, registerForm);
+            this.$router.push({ name: "Projects" });
+          })
+          .catch(err => {
+            this.loading = false;
 
-          if (err.response) {
-            this.error = err.response.data.message;
-          } else {
-            this.error = "Nework Error.";
-          }
-        });
+            if (err.response) {
+              this.error = err.response.data.message;
+            } else {
+              this.error = "Nework Error.";
+            }
+          });
+      }
+     
     },
     ...mapActions("auth", ["register"])
   }

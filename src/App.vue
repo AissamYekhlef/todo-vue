@@ -14,13 +14,21 @@
         </div>
 
       <div class="ml-auto">
-        User:<span class="pr-3 text-success font-weight-bold" v-if="loggedIn"> {{ this.user.user }} </span>
+        <span v-if="loggedIn">
+        User:<span class="pr-3 text-success font-weight-bold" > {{ this.user.user }} </span>
+        </span>
         <button class="btn btn-outline-danger" @click="logoutUser" v-if="loggedIn"> Logout </button>
         <router-link  v-if="! loggedIn" to="/login"> 
-            <button class="btn btn-outline-success">Login</button> 
+            <button class="btn btn-outline-success" 
+                    :class="{ 'btn-success text-white' :this.$route.name === 'Login'}">
+              Login
+            </button> 
         </router-link> 
         <router-link to="/register" v-if="! loggedIn"> 
-            <button class="btn btn-outline-success ml-1">Register</button> 
+            <button class="btn btn-outline-success ml-1" 
+                    :class="{ 'btn-success text-white' :this.$route.name === 'Register'}">
+              Register
+            </button> 
         </router-link> 
       </div>
       </nav>
@@ -58,9 +66,10 @@
 
 import { mapActions, mapGetters } from "vuex";
 
+
 export default {
   mounted(){
-    // console.log(this.$route.params.id);
+    // console.log(store);
   },
   data(){
     return {
